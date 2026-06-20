@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal of Cangzhi Tamil and Integrity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #FBF8F1;
+    --ink:       #1F2E2B;
+    --ink-soft:  #3D5A52;
+    --seal:      #A6402C;
+    --gold:      #C9A35C;
+    --line:      #DCD4C0;
+    --card:      #F5F1E6;
+    --max: 1140px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-size:11.5px;
+  }
+
+  /* ---------- palm-leaf strip signature element ---------- */
+  .leaf-strip{
+    position:relative;
+    height:18px;
+    margin:0 auto;
+  }
+  .leaf-strip::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:50%;
+    height:1px;
+    background:var(--gold);
+    transform:translateY(-50%);
+  }
+  .leaf-strip .hole{
+    position:absolute;
+    top:50%;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--bg);
+    border:1px solid var(--gold);
+    transform:translateY(-50%);
+  }
+  .leaf-strip .hole.l{ left:14%; }
+  .leaf-strip .hole.r{ right:14%; }
+
+  /* ---------- top utility bar ---------- */
+  .utility-bar{
+    border-bottom:1px solid var(--line);
+    background:var(--ink);
+  }
+  .utility-bar .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:38px;
+    color:#D9D2BC;
+  }
+  .utility-bar a{ color:#D9D2BC; opacity:0.85; }
+  .utility-bar a:hover{ opacity:1; color:var(--gold); }
+  .utility-links{ display:flex; gap:22px; }
+
+  /* ---------- masthead ---------- */
+  header.masthead{
+    padding:54px 0 0;
+    text-align:center;
+  }
+  .eyebrow{
+    color:var(--seal);
+    margin-bottom:18px;
+  }
+  .title-tamil{
+    font-family:'Noto Serif Tamil', serif;
+    font-size:clamp(22px,3vw,30px);
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  h1.masthead-title{
+    font-family:'Source Serif 4', serif;
+    font-weight:700;
+    font-size:clamp(34px,5.4vw,58px);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    max-width:880px;
+    margin:0 auto 18px;
+  }
+  .masthead-sub{
+    color:var(--ink-soft);
+    font-size:17px;
+    max-width:560px;
+    margin:0 auto 36px;
+    font-style:italic;
+  }
+
+  nav.primary{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--card);
+  }
+  nav.primary .wrap{
+    display:flex;
+    justify-content:center;
+    gap:42px;
+    height:54px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  nav.primary a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    position:relative;
+    padding:4px 0;
+  }
+  nav.primary a:hover, nav.primary a.active{ color:var(--seal); }
+  nav.primary a.active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-3px;
+    height:2px; background:var(--seal);
+  }
+
+  /* ---------- masthead statement (hero thesis) ---------- */
+  section.statement{
+    padding:64px 0 50px;
+    border-bottom:1px solid var(--line);
+  }
+  .statement-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .statement-grid p{
+    font-size:20px;
+    line-height:1.65;
+    color:var(--ink);
+    max-width:640px;
+  }
+  .statement-grid p + p{ margin-top:16px; color:var(--ink-soft); font-size:16px; }
+  .stat-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .stat-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stat-row:first-child{ padding-top:0; }
+  .stat-row .label{ color:var(--ink-soft); font-size:13px; }
+  .stat-row .val{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    color:var(--ink);
+  }
+
+  /* ---------- section headers ---------- */
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin:0 0 28px;
+  }
+  .section-head h2{
+    font-size:26px;
+    font-weight:600;
+  }
+  .section-head .see-all{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--seal);
+    white-space:nowrap;
+  }
+  .section-head .see-all:hover{ text-decoration:underline; }
+
+  /* ---------- current issue ---------- */
+  section.current-issue{ padding:62px 0; }
+  .issue-tag{
+    display:inline-block;
+    color:var(--seal);
+    margin-bottom:10px;
+  }
+
+  .article-bundle{
+    border-top:1px solid var(--ink);
+  }
+  .article-row{
+    display:grid;
+    grid-template-columns:64px 1fr 150px;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .article-row:hover{ background:rgba(201,163,92,0.08); }
+  .article-row .pp{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    padding-top:4px;
+  }
+  .article-row h3{
+    font-size:19px;
+    font-weight:600;
+    line-height:1.4;
+    margin-bottom:8px;
+  }
+  .article-row h3 a:hover{ color:var(--seal); }
+  .article-row .authors{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .article-row .excerpt{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .article-row .meta-col{
+    text-align:right;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    align-items:flex-end;
+  }
+  .badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border:1px solid var(--gold);
+    color:var(--ink-soft);
+    border-radius:2px;
+  }
+  .badge.oa{ border-color:var(--seal); color:var(--seal); }
+  .doi{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    opacity:0.7;
+  }
+
+  /* ---------- three-column lower section ---------- */
+  section.about-cols{
+    padding:60px 0 70px;
+  }
+  .cols-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:48px;
+  }
+  .col-block h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--seal);
+    margin-bottom:14px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .col-block p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .col-block ul{ list-style:none; }
+  .col-block li{
+    font-size:14.5px;
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .col-block li:last-child{ border-bottom:none; }
+  .col-block li .role{ color:var(--ink-soft); font-size:12.5px; text-align:right; }
+
+  .btn{
+    display:inline-block;
+    margin-top:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--bg);
+    background:var(--ink);
+    padding:11px 20px;
+    border-radius:2px;
+  }
+  .btn:hover{ background:var(--seal); }
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .btn.ghost:hover{ background:var(--ink); color:var(--bg); }
+
+  /* ---------- archive strip ---------- */
+  section.archive{
+    padding:48px 0 64px;
+    border-top:1px solid var(--line);
+  }
+  .archive-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .archive-cell{
+    background:var(--card);
+    padding:22px 20px;
+  }
+  .archive-cell .vol{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--seal);
+    margin-bottom:6px;
+  }
+  .archive-cell h4{
+    font-size:15.5px;
+    font-weight:600;
+    line-height:1.4;
+    margin-bottom:6px;
+  }
+  .archive-cell .when{
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .archive-cell:hover{ background:#EFE8D6; }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:#D9D2BC;
+    padding:54px 0 30px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(217,210,188,0.2);
+  }
+  footer h5{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  footer .footer-title{
+    font-family:'Source Serif 4', serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--bg);
+    margin-bottom:10px;
+  }
+  footer p{ font-size:13.5px; color:#B9B19A; line-height:1.7; }
+  footer ul{ list-style:none; }
+  footer li{ margin-bottom:9px; font-size:13.5px; }
+  footer a:hover{ color:var(--gold); }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top:24px;
+    font-size:12px;
+    color:#8C8569;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .statement-grid{ grid-template-columns:1fr; gap:32px; }
+    .cols-grid{ grid-template-columns:1fr; gap:36px; }
+    .archive-grid{ grid-template-columns:repeat(2,1fr); }
+    .footer-grid{ grid-template-columns:1fr 1fr; gap:30px; }
+    nav.primary .wrap{ gap:24px; }
+  }
+  @media (max-width:600px){
+    .article-row{ grid-template-columns:40px 1fr; }
+    .article-row .meta-col{ grid-column:1 / -1; flex-direction:row; align-items:center; justify-content:flex-start; margin-top:10px; }
+    .archive-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr; gap:28px; }
+    .utility-links{ gap:14px; }
+    h1.masthead-title{ font-size:clamp(28px,8vw,40px); }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--seal);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="wrap">
+    <span class="mono">ISSN 2998-4471 (Online)</span>
+    <div class="utility-links mono">
+      <a href="#">Submit Manuscript</a>
+      <a href="#">Editorial Login</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow mono">A Peer-Reviewed Quarterly</div>
+    <div class="title-tamil">சங்கி தமிழ் மற்றும் நேர்மை இதழ்</div>
+    <h1 class="masthead-title">Journal of Cangzhi Tamil and Integrity</h1>
+    <p class="masthead-sub">Classical and contemporary Tamil studies, language ethics, and research integrity — read alongside one another.</p>
+  </div>
+  <div class="leaf-strip" style="max-width:300px;"><span class="hole l"></span><span class="hole r"></span></div>
+</header>
+
+<nav class="primary">
+  <div class="wrap">
+    <a href="#" class="active">Current Issue</a>
+    <a href="#">Archive</a>
+    <a href="#">Aims &amp; Scope</a>
+    <a href="#">Editorial Board</a>
+    <a href="#">For Authors</a>
+    <a href="#">Ethics Policy</a>
+  </div>
+</nav>
+
+<section class="statement">
+  <div class="wrap statement-grid">
+    <div>
+      <p>The journal publishes research on Tamil language, classical Cankam (சங்கம்) literature, and translation studies, set side by side with scholarship on research integrity and publication ethics across the humanities.</p>
+      <p>Every accepted article carries a public review summary and a signed integrity statement from its authors — a record kept open, the way a palm-leaf manuscript keeps its string of pages in order.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat-row"><span class="label mono">Founded</span><span class="val">2019</span></div>
+      <div class="stat-row"><span class="label mono">Acceptance rate</span><span class="val">21%</span></div>
+      <div class="stat-row"><span class="label mono">Median review time</span><span class="val">11 weeks</span></div>
+      <div class="stat-row"><span class="label mono">Languages</span><span class="val">Tamil &amp; English</span></div>
+      <div class="stat-row"><span class="label mono">Licence</span><span class="val">CC BY 4.0</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="current-issue">
+  <div class="wrap">
+    <div class="issue-tag mono">Volume 7, Issue 2 — June 2026</div>
+    <div class="section-head">
+      <h2>Current Issue</h2>
+      <a href="#" class="see-all">View table of contents →</a>
+    </div>
+
+    <div class="article-bundle">
+      <article class="article-row">
+        <div class="pp">112</div>
+        <div>
+          <h3><a href="#">Akam and Puram Re-read: Interiority as Method in Cankam Poetics</a></h3>
+          <div class="authors">K. Aravindan, S. Meenakshi Sundaram</div>
+          <p class="excerpt">Revisits the akam/puram division not as genre but as a method of reading interiority across three anthologies, with new manuscript collations.</p>
+        </div>
+        <div class="meta-col">
+          <span class="badge oa">Open Access</span>
+          <span class="doi">doi.org/10.4521/jcti.2026.0712</span>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <div class="pp">138</div>
+        <div>
+          <h3><a href="#">Disclosure Without Deterrence: Author-Reported Conflicts in Regional Humanities Journals</a></h3>
+          <div class="authors">R. Vasanthakumari</div>
+          <p class="excerpt">A five-year audit of conflict-of-interest disclosures across twenty South Asian humanities journals, and what changed after disclosure became mandatory.</p>
+        </div>
+        <div class="meta-col">
+          <span class="badge oa">Open Access</span>
+          <span class="doi">doi.org/10.4521/jcti.2026.0713</span>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <div class="pp">161</div>
+        <div>
+          <h3><a href="#">Loanword Anxiety: Purism and Pragmatism in 20th-Century Tamil Lexicography</a></h3>
+          <div class="authors">N. Chandrasekaran, P. Iniya</div>
+          <p class="excerpt">Traces how dictionary-makers negotiated Sanskrit and English loanwords, and the political weight that lexical choices carried after 1956.</p>
+        </div>
+        <div class="meta-col">
+          <span class="badge">Subscriber Only</span>
+          <span class="doi">doi.org/10.4521/jcti.2026.0714</span>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <div class="pp">189</div>
+        <div>
+          <h3><a href="#">Retraction as Repair: A Case Study in Correcting the Record Gently</a></h3>
+          <div class="authors">M. Lourdusamy</div>
+          <p class="excerpt">Examines a 2023 retraction in epigraphic dating and argues for retraction notices written as scholarly correction rather than punishment.</p>
+        </div>
+        <div class="meta-col">
+          <span class="badge oa">Open Access</span>
+          <span class="doi">doi.org/10.4521/jcti.2026.0715</span>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <div class="pp">214</div>
+        <div>
+          <h3><a href="#">Translating Silence: Untranslatability in Tamil Devotional Verse</a></h3>
+          <div class="authors">S. Karpagam, D. Yokesh</div>
+          <p class="excerpt">Compares four English translations of Āṇṭāḷ's verses, asking what is lost, kept, or invented when devotional silence meets English syntax.</p>
+        </div>
+        <div class="meta-col">
+          <span class="badge">Subscriber Only</span>
+          <span class="doi">doi.org/10.4521/jcti.2026.0716</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="leaf-strip" style="max-width:var(--max); margin-left:auto; margin-right:auto;"><span class="hole l"></span><span class="hole r"></span></div>
+
+<section class="about-cols">
+  <div class="wrap cols-grid">
+    <div class="col-block">
+      <h3>Aims &amp; Scope</h3>
+      <p>We publish original research in Tamil linguistics, classical and modern literature, translation studies, and the ethics of humanities publishing.</p>
+      <p>Submissions are welcome in Tamil or English; abstracts are required in both.</p>
+      <a href="#" class="btn ghost">Read full scope</a>
+    </div>
+    <div class="col-block">
+      <h3>Editorial Board</h3>
+      <ul>
+        <li><span>Dr. Latha Ramaswamy</span><span class="role">Editor-in-Chief</span></li>
+        <li><span>Dr. Ilakkiya Senthil</span><span class="role">Associate Editor</span></li>
+        <li><span>Dr. Bose Krishnamoorthy</span><span class="role">Ethics Editor</span></li>
+        <li><span>Dr. Farah Lakshmi Devi</span><span class="role">Reviews Editor</span></li>
+      </ul>
+      <a href="#" class="btn ghost">Full board &amp; affiliations</a>
+    </div>
+    <div class="col-block">
+      <h3>For Authors</h3>
+      <p>Manuscripts undergo double-anonymous review. We require a signed integrity statement and data-availability note with every submission.</p>
+      <a href="#" class="btn">Submission guidelines</a>
+    </div>
+  </div>
+</section>
+
+<section class="archive">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Recent Issues</h2>
+      <a href="#" class="see-all">Full archive since 2019 →</a>
+    </div>
+    <div class="archive-grid">
+      <a href="#" class="archive-cell">
+        <div class="vol mono">VOL 7 · NO 1</div>
+        <h4>Caste, Script, and the Politics of Naming</h4>
+        <div class="when">March 2026</div>
+      </a>
+      <a href="#" class="archive-cell">
+        <div class="vol mono">VOL 6 · NO 4</div>
+        <h4>Peer Review in Low-Resource Languages</h4>
+        <div class="when">December 2025</div>
+      </a>
+      <a href="#" class="archive-cell">
+        <div class="vol mono">VOL 6 · NO 3</div>
+        <h4>Bronze Age Tamil Trade Inscriptions, Reconsidered</h4>
+        <div class="when">September 2025</div>
+      </a>
+      <a href="#" class="archive-cell">
+        <div class="vol mono">VOL 6 · NO 2</div>
+        <h4>Plagiarism Detection Across Diglossic Texts</h4>
+        <div class="when">June 2025</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">Journal of Cangzhi Tamil and Integrity</div>
+        <p>An independent, peer-reviewed quarterly in Tamil studies and research ethics, published since 2019.</p>
+      </div>
+      <div>
+        <h5>Journal</h5>
+        <ul>
+          <li><a href="#">Aims &amp; Scope</a></li>
+          <li><a href="#">Editorial Board</a></li>
+          <li><a href="#">Ethics Policy</a></li>
+          <li><a href="#">Indexing &amp; Archiving</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Authors</h5>
+        <ul>
+          <li><a href="#">Submission Guidelines</a></li>
+          <li><a href="#">Review Process</a></li>
+          <li><a href="#">Open Access Fees</a></li>
+          <li><a href="#">Author Login</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#">editor@jcti.org</a></li>
+          <li><a href="#">Editorial Office, Chennai</a></li>
+          <li><a href="#">RSS Feed</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Journal of Cangzhi Tamil and Integrity. All rights reserved.</span>
+      <span>ISSN 2998-4471 (Online) · ISSN 2998-4463 (Print)</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
